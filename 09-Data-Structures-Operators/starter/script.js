@@ -306,5 +306,17 @@ console.log(rest2);
 // team1 < team2 && console.log('Team 1 is more likely to win');
 // team1 > team2 && console.log('Team 2 is more likely to win');
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-for (const item of menu) console.log(item);
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// for (const item of menu) console.log(item);
+
+//optional chaining
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+for (const day of weekdays) {
+  console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`${day}, open at ${open}`);
+}
+
+console.log(restaurant.orderRissoto?.(0, 1) ?? 'method do not exist'); // before ?. is checking is the thing exist, like in this example check if method exist
