@@ -309,14 +309,34 @@ console.log(rest2);
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // for (const item of menu) console.log(item);
 
-//optional chaining
-console.log(restaurant.openingHours.mon?.open);
-console.log(restaurant.openingHours?.mon?.open);
+//// optional chaining
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
 
-for (const day of weekdays) {
-  console.log(day);
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`${day}, open at ${open}`);
+// for (const day of weekdays) {
+//   console.log(day);
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`${day}, open at ${open}`);
+// }
+
+// console.log(restaurant.orderRissoto?.(0, 1) ?? 'method do not exist'); // before ?. is checking is the thing exist, like in this example check if method exist
+
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr += `${day}, `;
 }
+console.log(openStr);
 
-console.log(restaurant.orderRissoto?.(0, 1) ?? 'method do not exist'); // before ?. is checking is the thing exist, like in this example check if method exist
+const values = Object.values(openingHours);
+console.log(values);
+
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+// [key,value]
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
